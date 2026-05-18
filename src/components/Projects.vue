@@ -14,14 +14,8 @@
             <span class="tag" v-for="tag in project.tags" :key="tag">{{ tag }}</span>
           </div>
           <div class="project-links">
-            <a :href="project.live" class="project-link">
-              Live
-              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M2 10L10 2M5 2h5v5"/>
-              </svg>
-            </a>
-            <a :href="project.github" class="project-link">
-              GitHub
+            <a :href="link" class="project-link" v-for="(link, name) in project.links" :key="name" target="_blank">
+              {{ name }}
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M2 10L10 2M5 2h5v5"/>
               </svg>
@@ -36,21 +30,13 @@
     const projects = [
         {
           title: 'FFXIV Radar',
-          desc: 'A clean weather app using the OpenWeatherMap API. Shows hourly forecasts, humidity, and wind speed with animated weather icons.',
+          desc: 'A guide into the world of Eorzea where the client gamer can find and track when and where nodes appear with the upmost convenience.',
           tags: ['Vue.js', 'API', 'CSS Grid'],
-          live: '#', github: '#'
-        },
-        {
-          title: 'Task Manager',
-          desc: 'A minimal to-do app with local storage persistence, drag-and-drop reordering, and priority labels. My first full CRUD app.',
-          tags: ['JavaScript', 'LocalStorage', 'CSS'],
-          live: '#', github: '#'
-        },
-        {
-          title: 'Portfolio v1',
-          desc: 'My first portfolio — a simple static site that got me my first freelance inquiry. Nothing fancy, but it was a huge milestone.',
-          tags: ['HTML', 'CSS', 'Static'],
-          live: '#', github: '#'
+          links: {
+            live: '#',
+            github: 'https://github.com/serdeljac/FFXIVRadarv2',
+            vercel: 'https://vercel.com/serdeljac/ffxiv-radarv2'
+          },
         }
       ];
 </script>

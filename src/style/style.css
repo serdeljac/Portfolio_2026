@@ -307,6 +307,7 @@
       position: relative;
       overflow: hidden;
       transition: border-color 0.3s, transform 0.3s;
+      max-width: 360px;
     }
     .project-card::before {
       content: '';
