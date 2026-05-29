@@ -15,6 +15,7 @@
 
 <script lang="ts" setup>
   import { ref, onMounted, onUnmounted } from 'vue';
+
   const scroll = ref(0);
   const mouse = ref({ x: 0, y: 0 });
   let scrollHandler: any, mouseMoveHandler: any;

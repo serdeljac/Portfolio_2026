@@ -29,6 +29,10 @@
           <div class="skills-grid">
             <div class="skill-chip" v-for="skill in techSkills" :key="skill">{{ skill }}</div>
           </div>
+          <p class="section-label" style="margin-bottom: 0.5rem; margin-top: 1.5rem">// Ai</p>
+          <div class="skills-grid">
+            <div class="skill-chip" v-for="skill in aiSkills" :key="skill">{{ skill }}</div>
+          </div>
           <p class="section-label" style="margin-bottom: 0.5rem; margin-top: 1.5rem">// Soft Skills</p>
           <div class="skills-grid">
             <div class="skill-chip" v-for="skill in softskills" :key="skill">{{ skill }}</div>
@@ -39,19 +43,23 @@
 </template>
 
 <script lang="ts" setup>
-const skills = [
-          'HTML / CSS (SASS)', 'JavaScript / Typescript', 'Vue.js', 'Git & GitHub',
-          'Responsive Design', 'Figma', 'Node.js (basics)', 'REST APIs'
-        ];
+    const skills = [
+      'HTML / CSS (SASS)', 'JavaScript / Typescript', 'Vue.js', 'Git & GitHub',
+      'Responsive Design', 'Figma', 'Node.js (basics)', 'REST APIs'
+    ];
 
-        const techSkills = [
-          'Microsoft Excel', 'Adobe Photoshop', 'Adobe Illustrator'
-        ];
+    const techSkills = [
+      'Microsoft Excel', 'Adobe Photoshop', 'Adobe Illustrator'
+    ];
 
-        const softskills = [
-          'Flexibility & Adaptability', 'Communication', 'Creative Problem-Solving', 
-          'Teamwork Skills', 'Time Management Skills'
-        ]
+    const aiSkills = [
+      'Claude',
+    ]
+
+    const softskills = [
+      'Flexibility & Adaptability', 'Communication', 'Creative Problem-Solving', 
+      'Teamwork Skills', 'Time Management Skills'
+    ]
         
 </script>
 
