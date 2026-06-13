@@ -1,0 +1,70 @@
+// ──────────────────────────────────────────────────────────────
+//  Design tokens + mixins — single source of truth.
+//  Auto-injected into every <style lang="scss"> via vite.config.ts
+//  (`additionalData`), so everything here must be side-effect free
+//  (variables / mixins / functions only — no CSS output).
+// ──────────────────────────────────────────────────────────────
+
+// ── Color tokens ──
+$bg:       #090a0f;
+$bg2:      #0f1118;
+$bg3:      #141720;
+$surface:  #1a1e2c;
+$accent:   #7df9c2;
+$accent2:  #5b8ef0;
+$text:     #e8eaf2;
+$border:   rgba(#fff, 0.07);
+$muted:    rgba(#fff, 0.35);
+
+// ── Typography ──
+$font-display: 'Syne', sans-serif;
+$font-mono:    'DM Mono', monospace;
+
+// ── Layout ──
+$gutter:            4rem;
+$gutter-mobile:     1.5rem;
+$breakpoint-mobile: 768px;
+
+// Tokens exposed to the runtime as CSS custom properties (see main.scss).
+// Kept as a map so :root and SASS stay in sync from one place.
+$color-tokens: (
+  'bg':      $bg,
+  'bg2':     $bg2,
+  'bg3':     $bg3,
+  'surface': $surface,
+  'accent':  $accent,
+  'accent2': $accent2,
+  'text':    $text,
+  'border':  $border,
+  'muted':   $muted,
+);
+
+// ── Mixins ──
+
+/// Mobile-first media query helper.
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) { @content; }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/// Small, tracked-out uppercase labels used throughout the site.
+@mixin uppercase-label($size: 0.7rem, $spacing: 0.1em) {
+  font-size: $size;
+  letter-spacing: $spacing;
+  text-transform: uppercase;
+}
+
+/// Shared base for the hero call-to-action buttons.
+@mixin button-base {
+  padding: 0.85rem 2rem;
+  font-family: $font-mono;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+  text-decoration: none;
+}

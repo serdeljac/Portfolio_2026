@@ -1,0 +1,82 @@
+// ──────────────────────────────────────────────────────────────
+//  Global base styles — reset, runtime tokens, shared utilities.
+//  Component-specific styles live in each SFC's scoped <style> block.
+//  ($variables / mixins are injected from variables.scss)
+// ──────────────────────────────────────────────────────────────
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// Expose design tokens to the runtime so they're reachable from
+// inline styles / SVG attributes (e.g. stroke="var(--accent)").
+:root {
+  @each $name, $value in $color-tokens {
+    --#{$name}: #{$value};
+  }
+
+  --font-display: #{$font-display};
+  --font-mono: #{$font-mono};
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: $bg;
+  color: $text;
+  font-family: $font-mono;
+  cursor: none;
+  overflow-x: hidden;
+}
+
+// ── Section scaffold (shared by About / Projects / Contact) ──
+section {
+  padding: 7rem $gutter;
+
+  @include mobile {
+    padding: 5rem $gutter-mobile;
+  }
+}
+
+.section-label {
+  @include uppercase-label(0.7rem, 0.15em);
+  color: $accent;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: $font-display;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.section-divider {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, $accent, transparent);
+  margin-bottom: 4rem;
+}
+
+// ── Scroll-driven helpers (toggled globally from App.vue) ──
+.parallax-layer {
+  will-change: transform;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

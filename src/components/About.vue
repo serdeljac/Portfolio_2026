@@ -53,7 +53,7 @@
     ];
 
     const aiSkills = [
-      'Claude',
+      'Claude Code',
     ]
 
     const softskills = [
@@ -70,5 +70,70 @@
 </script>
 
 <style scoped lang="scss">
+  .about {
+    background: $bg2;
+  }
 
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    max-width: 1600px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+
+  .about-text {
+    font-size: 0.92rem;
+    line-height: 1.9;
+    color: $muted;
+    font-weight: 300;
+
+    p + p {
+      margin-top: 1.2rem;
+    }
+
+    strong {
+      color: $text;
+      font-weight: 400;
+    }
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .skill-chip {
+    padding: 0.6rem 1rem;
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: $muted;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: border-color 0.2s, color 0.2s;
+
+    &:hover {
+      border-color: rgba($accent, 0.3);
+      color: $text;
+    }
+
+    &::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: $accent2;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+  }
 </style>

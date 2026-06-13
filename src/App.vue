@@ -89,3 +89,41 @@
     components: {NavigationComp, HeroComp, AboutComp, ProjectsComp, ContactComp, FooterComp}
   }
 </script>
+
+<style scoped lang="scss">
+  // ── Custom cursor (position is driven from JS in onMounted) ──
+  #cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: $accent;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, background 0.2s;
+  }
+
+  #cursor-ring {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid $accent;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.25s, height 0.25s, background 0.25s, border-color 0.25s;
+
+    &.hover {
+      width: 60px;
+      height: 60px;
+      background: rgba($accent, 0.08);
+      border-color: $accent2;
+    }
+  }
+</style>
