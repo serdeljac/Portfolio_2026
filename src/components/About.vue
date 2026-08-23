@@ -20,22 +20,12 @@
             When I'm not coding, I'm probably hiking, taking photos, or deep in a rabbit hole about design history.
           </p>
         </div>
-        <div>
-          <p class="section-label" style="margin-bottom: 0.5rem;">// Stack</p>
-          <div class="skills-grid">
-            <div class="skill-chip" v-for="skill in skills" :key="skill">{{ skill }}</div>
-          </div>
-          <p class="section-label" style="margin-bottom: 0.5rem; margin-top: 1.5rem">// Tech Skills</p>
-          <div class="skills-grid">
-            <div class="skill-chip" v-for="skill in techSkills" :key="skill">{{ skill }}</div>
-          </div>
-          <p class="section-label" style="margin-bottom: 0.5rem; margin-top: 1.5rem">// Ai</p>
-          <div class="skills-grid">
-            <div class="skill-chip" v-for="skill in aiSkills" :key="skill">{{ skill }}</div>
-          </div>
-          <p class="section-label" style="margin-bottom: 0.5rem; margin-top: 1.5rem">// Soft Skills</p>
-          <div class="skills-grid">
-            <div class="skill-chip" v-for="skill in softskills" :key="skill">{{ skill }}</div>
+        <div class="about-skillgroups">
+          <div v-for="(skills, index) in skillList" :key="index">
+            <p class="section-label" style="margin-bottom: 0.5rem;">{{ `// ${index}` }}</p>
+            <div class="skills-grid">
+              <div class="skill-chip" v-for="s in skills" :key="s">{{ s }}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -43,29 +33,12 @@
 </template>
 
 <script lang="ts" setup>
-    const skills = [
-      'HTML / CSS (SASS)', 'JavaScript / Typescript', 'Vue.js', 'Git & GitHub',
-      'Responsive Design', 'Figma', 'Node.js (basics)', 'REST APIs'
-    ];
-
-    const techSkills = [
-      'Microsoft Excel', 'Adobe Photoshop', 'Adobe Illustrator'
-    ];
-
-    const aiSkills = [
-      'Claude Code',
-    ]
-
-    const softskills = [
-      'Flexibility & Adaptability', 'Communication', 'Creative Problem-Solving', 
-      'Teamwork Skills', 'Time Management Skills'
-    ]
-        
+  import { skillList } from '../lib/library.ts'
 </script>
 
 <script lang="ts">
     export default {
-        name: "COMP_NAME"
+        name: "About"
     }
 </script>
 
@@ -101,6 +74,12 @@
       color: $text;
       font-weight: 400;
     }
+  }
+
+  .about-skillgroups {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 
   .skills-grid {

@@ -16,7 +16,7 @@
           <div class="line2">Erdeljac</div>
         </h1>
         <p class="hero-subtitle">
-          Junior web developer crafting clean interfaces and thoughtful digital experiences.
+          Software engineer crafting clean interfaces and thoughtful digital experiences.
           Learning every day — one commit at a time.
         </p>
         <div class="hero-ctas">
