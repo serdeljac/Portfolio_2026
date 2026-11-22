@@ -3,7 +3,6 @@
       <div class="reveal">
         <p class="section-label">// 02 — Projects</p>
         <h2 class="section-title">Things I've Built</h2>
-        <div class="section-divider"></div>
       </div>
       <div class="projects-carousel reveal">
 
@@ -21,13 +20,16 @@
         <div class="carousel-track" ref="track" @scroll="updateScrollState">
           <div class="project-card" v-for="(project, i) in projects" :key="i">
             <div class="project-num">0{{ i + 1 }}</div>
-            <h3 class="project-title">{{ project.title }}</h3>
+            <h3 class="project-title">
+              {{ project.title }}
+              <span v-if="project.status" class="project-status">{{ project.status }}</span>
+            </h3>
             <p class="project-desc">{{ project.desc }}</p>
             <div class="project-tags">
               <span class="tag" v-for="tag in project.tags" :key="tag">{{ tag }}</span>
             </div>
             <div class="project-links">
-              <a :href="link" class="project-link" v-for="(link, name) in project.links" :key="name" target="_blank">
+              <a :href="link" class="project-link" v-for="(link, name) in visibleLinks(project.links)" :key="name" target="_blank">
                 {{ name }}
                 <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
                   <path d="M2 10L10 2M5 2h5v5"/>
@@ -102,7 +104,20 @@
       window.removeEventListener('resize', updateScrollState);
     });
 
-    const projects = [
+    type Project = {
+      title: string;
+      desc: string;
+      tags: string[];
+      links: Record<string, string>;
+      status?: string;
+    };
+
+    // Links with an empty URL are not rendered (e.g. a project that isn't published yet).
+    function visibleLinks(links: Record<string, string>) {
+      return Object.fromEntries(Object.entries(links).filter(([, url]) => url));
+    }
+
+    const projects: Project[] = [
         {
           title: 'FFXIV Radar',
           desc: 'A guide into the world of Eorzea where the client gamer can find and track when and where nodes appear with the upmost convenience.',
@@ -113,8 +128,16 @@
             vercel: 'https://vercel.com/serdeljac/ffxiv-radarv2'
           },
         },
-        
-        
+        {
+          title: 'Taskco',
+          status: 'In Progress...',
+          desc: 'A SaaS task management application used for personal and group projects with other users, including routine tasks to maintain daily regiments.',
+          tags: ['react.js', 'SaaS', 'Node'],
+          links: {
+            github: '', // add URL to show the link
+            vercel: '', // add URL to show the link
+          },
+        },
       ];
 </script>
 
@@ -151,6 +174,7 @@
     flex: 1;
     min-width: 0; // allow the scroll container to shrink below its content width
     display: flex;
+    align-items: flex-start; // cards keep their natural height
     gap: 1.5rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -297,6 +321,23 @@
     font-weight: 700;
     margin-bottom: 0.75rem;
     letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .project-status {
+    font-family: $font-display;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: #000;
+    background: $accent;
+    border-radius: 6px;
+    padding: 1.5px 0.85rem;
+    white-space: nowrap;
   }
 
   .project-desc {
