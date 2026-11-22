@@ -1,13 +1,32 @@
-export const skillList: Record<string, string[]> = {
-    'Languages': ['HTML5 / CSS3 (SASS)', 'Javascript / Typescript'],
-    'Frameworks': ['Vue 3', 'React', 'Redux', 'Leaflet', 'Next.JS'],
-    'Backend' : ['Node.JS', 'MySQL', 'Wordpress'],
-    'Tooling': ['Git / GitHub', 'Vite / Vitest', 'Axios', 'Claude Code', 'VSC / Cursor', 'Adobe Photoshop', 'Microsoft Office'],
-    'Deployment': ['Vercel', 'AWS', 'Railway', 'Cloudflare'],
-    'Integrations': ['Stripe / Paypal', 'Mailchimp'],
-    'Practices': ['Component-driven architecture', 'Responsive UI', 'Automated Testing'],
-    'Soft Skills': ['Flexibility & Adaptability', 'Communication', 'Creative Problem-Solving', 'Teamwork Skills', 'Time Management Skills'],
+export type SkillGroup = {
+    title: string;
+    // Rendered as chips, or as a single line of text when `asText` is true.
+    items: string[];
+    asText?: boolean;
 }
+
+// Highlighted with the accent outline ("Core stack — what I use daily").
+export const coreSkills = ['Vue 3', 'TypeScript', 'SASS'];
+
+export const skillGroups: SkillGroup[] = [
+    {
+        title: 'Frontend',
+        items: ['Vue 3', 'TypeScript', 'SASS', 'JavaScript', 'HTML5', 'CSS3', 'React', 'Redux', 'Next.js', 'Leaflet'],
+    },
+    {
+        title: 'Backend & data',
+        items: ['Node.js', 'MySQL', 'WordPress', 'Stripe', 'PayPal', 'Mailchimp'],
+    },
+    {
+        title: 'Tooling & deploy',
+        items: ['Git', 'GitHub', 'Vite', 'Vitest', 'Axios', 'Claude Code', 'VS Code', 'Cursor', 'Photoshop', 'Vercel', 'AWS', 'Railway', 'Cloudflare'],
+    },
+    {
+        title: 'How I work',
+        asText: true,
+        items: ['Component-driven architecture', 'Responsive UI', 'Automated testing', 'Clear communication', 'Teamwork', 'Adaptability', 'Creative problem-solving', 'Time management'],
+    },
+]
 
 export const projectList = {
     'FFXIV Radar': {

@@ -20,12 +20,30 @@
             When I'm not coding, I'm probably hiking, taking photos, or deep in a rabbit hole about design history.
           </p>
         </div>
-        <div class="about-skillgroups">
-          <div v-for="(skills, index) in skillList" :key="index">
-            <p class="section-label" style="margin-bottom: 0.5rem;">{{ `// ${index}` }}</p>
-            <div class="skills-grid">
-              <div class="skill-chip" v-for="s in skills" :key="s">{{ s }}</div>
-            </div>
+
+        <div class="toolkit">
+          <div class="toolkit-head">
+            <p class="section-label">// Toolkit</p>
+            <p class="toolkit-legend">
+              <span class="toolkit-legend-swatch" aria-hidden="true"></span>
+              Core stack — what I use daily
+            </p>
+          </div>
+
+          <div class="toolkit-row" v-for="(group, i) in skillGroups" :key="group.title">
+            <h3 class="toolkit-label">
+              <span class="toolkit-num">{{ String(i + 1).padStart(2, '0') }}</span>
+              {{ group.title }}
+            </h3>
+            <p v-if="group.asText" class="toolkit-text">{{ group.items.join(' · ') }}</p>
+            <ul v-else class="toolkit-chips">
+              <li
+                v-for="skill in group.items"
+                :key="skill"
+                class="skill-chip"
+                :class="{ 'skill-chip--core': coreSkills.includes(skill) }"
+              >{{ skill }}</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -33,7 +51,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { skillList } from '../lib/library.ts'
+  import { skillGroups, coreSkills } from '../lib/library.ts'
 </script>
 
 <script lang="ts">
@@ -48,22 +66,23 @@
   }
 
   .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: 5rem;
-    align-items: start;
-    max-width: 1600px;
+    align-items: flex-start;
+    max-width: 1312px;
 
     @include mobile {
-      grid-template-columns: 1fr;
       gap: 3rem;
     }
   }
 
   .about-text {
-    font-size: 0.92rem;
+    flex: 1 1 360px;
+    min-width: 0;
+    font-size: 0.94rem;
     line-height: 1.9;
-    color: $muted;
+    color: $subtle;
     font-weight: 300;
 
     p + p {
@@ -76,29 +95,106 @@
     }
   }
 
-  .about-skillgroups {
+  // ── Toolkit: one row per group, label left + chips right ──
+  .toolkit {
+    flex: 1.25 1 520px;
+    min-width: 0;
+
+    @include mobile {
+      flex-basis: 100%;
+    }
+  }
+
+  .toolkit-head {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 0.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(#fff, 0.08);
+
+    .section-label {
+      margin-bottom: 0;
+    }
   }
 
-  .skill-chip {
-    padding: 0.6rem 1rem;
-    background: $surface;
-    border: 1px solid $border;
-    border-radius: 4px;
-    font-size: 0.78rem;
-    letter-spacing: 0.04em;
-    color: $muted;
+  .toolkit-legend {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: $subtle;
+  }
+
+  .toolkit-legend-swatch {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    border: 1px solid $accent;
+    background: rgba($accent, 0.07);
+  }
+
+  .toolkit-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(#fff, 0.08);
+  }
+
+  .toolkit-label {
+    flex: 0 0 150px;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding-top: 6px;
+    @include uppercase-label(0.7rem, 0.15em);
+    font-weight: 400;
+    color: $text;
+
+    @include mobile {
+      flex-basis: 100%;
+      padding-top: 0;
+    }
+  }
+
+  .toolkit-num {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: $accent;
+    opacity: 0.7;
+  }
+
+  .toolkit-chips {
+    flex: 1 1 280px;
+    min-width: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+  }
+
+  .toolkit-text {
+    flex: 1 1 280px;
+    min-width: 0;
+    padding-top: 4px;
+    font-size: 0.82rem;
+    line-height: 1.9;
+    font-weight: 300;
+    color: $subtle;
+  }
+
+  .skill-chip {
+    padding: 6px 12px;
+    background: $bg3;
+    border: 1px solid rgba(#fff, 0.09);
+    border-radius: 4px;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: $subtle;
+    white-space: nowrap;
     transition: border-color 0.2s, color 0.2s;
 
     &:hover {
@@ -106,13 +202,14 @@
       color: $text;
     }
 
-    &::before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      background: $accent2;
-      border-radius: 50%;
-      flex-shrink: 0;
+    &--core {
+      border-color: $accent;
+      background: rgba($accent, 0.07);
+      color: $accent;
+
+      &:hover {
+        color: $accent;
+      }
     }
   }
 </style>
