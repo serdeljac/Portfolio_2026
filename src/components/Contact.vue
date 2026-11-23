@@ -17,10 +17,13 @@
                   <path d="M2 8l10 7 10-7"/>
                 </svg>
               </div>
-              <div>
-                <div class="contact-item-label">Email</div>
+              <div class="contact-item-text">
+                <div class="contact-item-label">Email me</div>
                 <div class="contact-item-value">hi@stjepanerdeljac.com</div>
               </div>
+              <svg class="contact-item-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6"/>
+              </svg>
             </a>
           </div>
 
@@ -32,10 +35,13 @@
                   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
                 </svg>
               </div>
-              <div>
+              <div class="contact-item-text">
                 <div class="contact-item-label">GitHub</div>
-                <div class="contact-item-value">github.com/stjepanerdeljac</div>
+                <div class="contact-item-value">github.com/<wbr>stjepanerdeljac</div>
               </div>
+              <svg class="contact-item-arrow" viewBox="0 0 12 12" fill="none" stroke-width="1.5" aria-hidden="true">
+                <path d="M2 10L10 2M5 2h5v5"/>
+              </svg>
             </a>
           </div>
         </div>
@@ -107,7 +113,7 @@
   // ── Top row: section heading left, featured contact cards right ──
   .contact-top {
     width: 100%;
-    max-width: 1210px;
+    max-width: 1312px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -123,25 +129,28 @@
     }
   }
 
+  // Two equal columns, so both featured cards are always the same size.
   .contact-focus {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 384px));
     gap: 2.1rem;
 
     @include mobile {
-      flex-direction: column;
+      grid-template-columns: minmax(0, 1fr);
+      grid-auto-rows: 1fr; // stacked cards stay the same height even if one wraps
       gap: 1.5rem;
     }
   }
 
   .contact-focus-col {
-    width: 321px;
-
-    @include mobile {
-      width: 100%;
-    }
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
 
     .contact-item {
+      flex: 1;
       width: 100%;
+      min-width: 0;
       margin-bottom: 0;
     }
   }
@@ -209,31 +218,66 @@
       margin-bottom: 0;
     }
 
-    // Featured: solid accent card (Email)
+    // Featured: solid accent card (Email) — styled like the hero's primary CTA,
+    // with a soft glow at rest and a lift + stronger glow on hover.
     &--primary {
       background: $accent;
       border-color: $accent;
+      box-shadow: 0 10px 30px -12px rgba($accent, 0.55);
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
 
       .contact-item-label,
-      .contact-item-value {
+      .contact-item-value,
+      .contact-item-arrow {
         color: #060a09;
+      }
+
+      .contact-item-label {
+        font-weight: 500;
       }
 
       &:hover {
         border-color: $accent;
+        filter: brightness(1.05);
+        transform: translateY(-2px);
+        box-shadow: 0 14px 34px -10px rgba($accent, 0.7);
+
+        .contact-item-arrow {
+          transform: translateX(4px);
+        }
       }
     }
 
-    // Featured: outlined accent card (GitHub)
+    // Featured: outlined accent card (GitHub) — same size, quieter.
     &--outline {
-      border-color: $accent;
+      border-color: rgba($accent, 0.6);
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
 
       .contact-item-label {
         color: $text;
       }
 
+      .contact-item-arrow {
+        color: $subtle;
+      }
+
       &:hover {
         border-color: $accent;
+        background: rgba($accent, 0.04);
+        transform: translateY(-2px);
+
+        .contact-item-arrow {
+          color: $accent;
+          transform: translate(2px, -2px);
+        }
+      }
+    }
+
+    &--primary,
+    &--outline {
+      &:focus-visible {
+        outline: 2px solid $accent2;
+        outline-offset: 3px;
       }
     }
 
@@ -260,6 +304,19 @@
       height: 16px;
       stroke: $accent;
     }
+  }
+
+  .contact-item-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .contact-item-arrow {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    stroke: currentColor;
+    transition: transform 0.2s, color 0.2s;
   }
 
   .contact-item-label {
