@@ -63,6 +63,12 @@
 <style scoped lang="scss">
   .about {
     background: $bg2;
+
+    // Center the heading and grid like the other sections on wide screens.
+    > * {
+      max-width: 1312px;
+      margin-inline: auto;
+    }
   }
 
   .about-grid {
@@ -70,15 +76,15 @@
     flex-wrap: wrap;
     gap: 5rem;
     align-items: flex-start;
-    max-width: 1312px;
 
     @include mobile {
       gap: 3rem;
     }
   }
 
+  // Bio and toolkit share the row evenly (same grow + basis), stacking on narrow screens.
   .about-text {
-    flex: 1 1 360px;
+    flex: 1 1 400px;
     min-width: 0;
     font-size: 0.94rem;
     line-height: 1.9;
@@ -97,12 +103,8 @@
 
   // ── Toolkit: one row per group, label left + chips right ──
   .toolkit {
-    flex: 1.25 1 520px;
+    flex: 1 1 400px;
     min-width: 0;
-
-    @include mobile {
-      flex-basis: 100%;
-    }
   }
 
   .toolkit-head {
