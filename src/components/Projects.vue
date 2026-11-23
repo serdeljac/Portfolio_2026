@@ -7,6 +7,7 @@
       <div class="projects-carousel reveal">
 
         <button
+          v-if="useCarousel"
           class="carousel-btn carousel-btn--prev"
           :disabled="!canScrollPrev"
           @click="scrollByCard(-1)"
@@ -17,7 +18,12 @@
           </svg>
         </button>
 
-        <div class="carousel-track" ref="track" @scroll="updateScrollState">
+        <div
+          class="carousel-track"
+          :class="{ 'carousel-track--static': !useCarousel }"
+          ref="track"
+          @scroll="updateScrollState"
+        >
           <div class="project-card" v-for="(project, i) in projects" :key="i">
             <div class="project-num">0{{ i + 1 }}</div>
             <h3 class="project-title">
@@ -40,6 +46,7 @@
         </div>
 
         <button
+          v-if="useCarousel"
           class="carousel-btn carousel-btn--next"
           :disabled="!canScrollNext"
           @click="scrollByCard(1)"
@@ -51,7 +58,7 @@
         </button>
       </div>
 
-      <div class="carousel-scrollbar" aria-hidden="true">
+      <div v-if="useCarousel" class="carousel-scrollbar" aria-hidden="true">
         <div class="carousel-scrollbar__thumb" :style="thumbStyle"></div>
       </div>
     </section>
@@ -134,11 +141,16 @@
           desc: 'A SaaS task management application used for personal and group projects with other users, including routine tasks to maintain daily regiments.',
           tags: ['react.js', 'SaaS', 'Node'],
           links: {
-            github: '', // add URL to show the link
+            github: 'https://github.com/serdeljac/Taskco',
             vercel: '', // add URL to show the link
           },
         },
       ];
+
+    // With up to 3 projects the cards sit in a static, centered row;
+    // the carousel (arrows, scroll, scrollbar) only kicks in beyond that.
+    const MAX_STATIC_PROJECTS = 3;
+    const useCarousel = projects.length > MAX_STATIC_PROJECTS;
 </script>
 
 <script lang="ts">
@@ -190,6 +202,20 @@
 
     @include mobile {
       gap: 1rem;
+    }
+
+    // Static layout (3 projects or fewer): centered, wrapping row, no scrolling.
+    &--static {
+      flex-wrap: wrap;
+      justify-content: center;
+      overflow: visible;
+      scroll-snap-type: none;
+
+      .project-card {
+        @include mobile {
+          flex-basis: 100%;
+        }
+      }
     }
   }
 
