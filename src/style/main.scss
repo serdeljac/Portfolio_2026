@@ -65,6 +65,20 @@ section {
   margin-bottom: 4rem;
 }
 
+// Text for screen readers and crawlers only (e.g. giving "live" / "github"
+// project links the project's name as context).
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 // ── Scroll-driven helpers (toggled globally from App.vue) ──
 .parallax-layer {
   will-change: transform;

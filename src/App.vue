@@ -4,10 +4,12 @@
     <div id="cursor-ring"></div>
 
     <NavigationComp />
-    <HeroComp :scroll="scroll" :mouse="mouse" />
-    <AboutComp />
-    <ProjectsComp />
-    <ContactComp />
+    <main>
+      <HeroComp :scroll="scroll" :mouse="mouse" />
+      <AboutComp />
+      <ProjectsComp />
+      <ContactComp />
+    </main>
     <FooterComp />
 
   </div>

@@ -1,6 +1,6 @@
 <template>
     <nav>
-      <a class="nav-logo" href="#"><span>//</span> stjepan.dev</a>
+      <a class="nav-logo" href="/" @click.prevent="scrollToTop"><span>//</span> stjepanerdeljac.com</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
@@ -11,8 +11,13 @@
 
 <script lang="ts">
     export default {
-        name: "Navigation Bar"
-        
+        name: "Navigation Bar",
+        methods: {
+            // The logo links to "/" for crawlers; on the page itself it just scrolls back up.
+            scrollToTop() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
     }
 </script>
 

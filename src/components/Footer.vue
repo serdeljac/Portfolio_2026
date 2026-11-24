@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <span>// stjepan.dev</span>
+        <span>// stjepanerdeljac.com</span>
         <span>Built with <span>Vue 3</span> · {{ new Date().getFullYear() }}</span>
     </footer>
 </template>

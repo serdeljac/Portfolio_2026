@@ -35,7 +35,8 @@
               <span class="tag" v-for="tag in project.tags" :key="tag">{{ tag }}</span>
             </div>
             <div class="project-links">
-              <a :href="link" class="project-link" v-for="(link, name) in visibleLinks(project.links)" :key="name" target="_blank">
+              <a :href="link" class="project-link" v-for="(link, name) in visibleLinks(project.links)" :key="name" target="_blank" rel="noopener">
+                <span class="visually-hidden">{{ project.title }}</span>
                 {{ name }}
                 <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
                   <path d="M2 10L10 2M5 2h5v5"/>
@@ -127,22 +128,21 @@
     const projects: Project[] = [
         {
           title: 'FFXIV Radar',
-          desc: 'A guide into the world of Eorzea where the client gamer can find and track when and where nodes appear with the upmost convenience.',
+          desc: 'A guide into the world of Eorzea where the client gamer can find and track when and where nodes appear with the utmost convenience.',
           tags: ['Vue.js', 'API', 'CSS Grid'],
           links: {
             live: 'https://ffxivradar.space/',
             github: 'https://github.com/serdeljac/FFXIVRadarv2',
-            vercel: 'https://vercel.com/serdeljac/ffxiv-radarv2'
           },
         },
         {
           title: 'Taskco',
           status: 'In Progress...',
-          desc: 'A SaaS task management application used for personal and group projects with other users, including routine tasks to maintain daily regiments.',
+          desc: 'A SaaS task management application used for personal and group projects with other users, including routine tasks to maintain daily regimens.',
           tags: ['react.js', 'SaaS', 'Node'],
           links: {
+            live: '', // add the public app URL (not the vercel.com dashboard) to show the link
             github: 'https://github.com/serdeljac/Taskco',
-            vercel: '', // add URL to show the link
           },
         },
       ];

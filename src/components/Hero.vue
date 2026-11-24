@@ -12,11 +12,10 @@
           Accepting in-house, hybrid, and remote roles.
         </div>
         <h1 class="hero-name">
-          <div class="line1">Stjepan</div>
-          <div class="line2">Erdeljac</div>
+          <span class="line1">Stjepan</span> <span class="line2">Erdeljac</span>
         </h1>
         <p class="hero-subtitle">
-          Software engineer crafting clean interfaces and thoughtful digital experiences.
+          Full stack developer in Vancouver, BC, crafting clean interfaces and thoughtful digital experiences.
           Learning every day — one commit at a time.
         </p>
         <div class="hero-ctas">
@@ -132,6 +131,12 @@
     line-height: 0.95;
     letter-spacing: -0.03em;
     margin-bottom: 1.5rem;
+
+    // Spans (not divs) keep the heading valid HTML and its text "Stjepan Erdeljac".
+    .line1,
+    .line2 {
+      display: block;
+    }
 
     .line2 {
       color: $accent;

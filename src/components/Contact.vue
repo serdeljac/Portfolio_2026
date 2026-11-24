@@ -37,7 +37,7 @@
               </div>
               <div class="contact-item-text">
                 <div class="contact-item-label">GitHub</div>
-                <div class="contact-item-value">github.com/<wbr>stjepanerdeljac</div>
+                <div class="contact-item-value">github.com/<wbr>serdeljac</div>
               </div>
               <svg class="contact-item-arrow" viewBox="0 0 12 12" fill="none" stroke-width="1.5" aria-hidden="true">
                 <path d="M2 10L10 2M5 2h5v5"/>
@@ -76,7 +76,7 @@
             </div>
             <div>
               <div class="contact-item-label">LinkedIn</div>
-              <div class="contact-item-value">linkedin.com/in/stjepanerdeljac</div>
+              <div class="contact-item-value">linkedin.com/in/serdeljac</div>
             </div>
           </a>
 
@@ -88,7 +88,7 @@
             </div>
             <div>
               <div class="contact-item-label">Facebook</div>
-              <div class="contact-item-value">facebook.com/stjepanerdeljac</div>
+              <div class="contact-item-value">facebook.com/Stjepan.Erdeljac</div>
             </div>
           </a>
         </div>

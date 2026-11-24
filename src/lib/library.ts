@@ -34,12 +34,11 @@ export const skillGroups: SkillGroup[] = [
 
 export const projectList = {
     'FFXIV Radar': {
-        desc: 'A guide into the world of Eorzea where the client gamer can find and track when and where nodes appear with the upmost convenience.',
+        desc: 'A guide into the world of Eorzea where the client gamer can find and track when and where nodes appear with the utmost convenience.',
         tags: ['Vue.js', 'API', 'CSS Grid'],
         links: {
             live: 'https://ffxivradar.space/',
             github: 'https://github.com/serdeljac/FFXIVRadarv2',
-            vercel: 'https://vercel.com/serdeljac/ffxiv-radarv2'
         },
     }
 }
