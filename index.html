@@ -79,15 +79,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+
+    <!-- The page is prerendered at build time, so it reads fine without JavaScript:
+         show the scroll-reveal sections and the normal cursor. -->
+    <noscript>
+      <style>
+        .reveal { opacity: 1 !important; transform: none !important; }
+        body { cursor: auto !important; }
+        #cursor-dot, #cursor-ring { display: none !important; }
+      </style>
+    </noscript>
   </head>
   <body>
+    <!-- Filled in at build time by scripts/prerender.mjs; keep it empty here. -->
     <div id="app"></div>
-    <noscript>
-      <p>Stjepan Erdeljac — Full Stack Developer in Vancouver, BC. This portfolio needs JavaScript to run.
-      Contact: <a href="mailto:hi@stjepanerdeljac.com">hi@stjepanerdeljac.com</a> ·
-      <a href="https://github.com/serdeljac">GitHub</a> ·
-      <a href="https://www.linkedin.com/in/serdeljac/">LinkedIn</a></p>
-    </noscript>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

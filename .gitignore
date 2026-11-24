@@ -81,6 +81,8 @@ out
 # Nuxt.js build / generate output
 .nuxt
 dist
+# Temporary server bundle used by scripts/prerender.mjs
+dist-ssr
 .output
 
 # Gatsby files
