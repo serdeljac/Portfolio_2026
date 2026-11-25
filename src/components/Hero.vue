@@ -41,7 +41,9 @@
 
 <style scoped lang="scss">
   .hero {
-    min-height: 100vh;
+    // Capped: Google renders pages in a very tall viewport, and a plain 100vh
+    // hero then grows with it and pushes the heading off its screenshot.
+    min-height: min(100vh, 1200px);
     display: flex;
     align-items: center;
     padding: 0 $gutter;
